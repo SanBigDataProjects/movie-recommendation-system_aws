@@ -3,6 +3,28 @@
 ## Production-Grade AWS Pipeline 
 **A complete, cloud-native movie recommendation system implementing real-world data engineering and machine learning practices on AWS.** 
  
+## Project Structure 
+ 
+\`\`\` 
+movie-recommendation-system_aws/ 
+³ 
+ÃÄÄ notebooks/ 
+³   ÀÄÄ movie_recommendation.ipynb      # Main analysis notebook 
+³ 
+ÃÄÄ data/ 
+³   ÃÄÄ raw/                            # Raw movie data 
+³   ³   ÃÄÄ movies.csv                  # Movie metadata 
+³   ³   ÀÄÄ ratings.csv                 # User ratings 
+³   ÃÄÄ processed/                      # Processed datasets 
+³   ÀÄÄ models/                         # Trained ML models 
+³ 
+ÃÄÄ src/                                # Source code modules 
+ÃÄÄ config/                             # Configuration files 
+ÃÄÄ requirements.txt                    # Python dependencies 
+ÃÄÄ .gitignore                          # Files to ignore in git 
+ÀÄÄ README.md                           # Project documentation 
+\`\`\` 
+ 
 ## End-to-End Architecture 
 \`\`\` 
 1. MovieLens Dataset - S3 Raw Zone 
@@ -51,24 +73,6 @@
  
 ## Tech Stack 
  
-## Project Structure 
-\`\`\` 
-movie-recommendation-system_aws/ 
-ÃÄÄ notebooks/ 
-³   ÀÄÄ movie_recommendation.ipynb      # Main analysis notebook 
-ÃÄÄ data/ 
-³   ÃÄÄ raw/                            # Raw movie data 
-³   ³   ÃÄÄ movies.csv                  # Movie metadata 
-³   ³   ÀÄÄ ratings.csv                 # User ratings 
-³   ÃÄÄ processed/                      # Processed datasets 
-³   ÀÄÄ models/                         # Trained ML models 
-ÃÄÄ src/                                # Source code modules 
-ÃÄÄ config/                             # Configuration files 
-ÃÄÄ requirements.txt                    # Python dependencies 
-ÃÄÄ .gitignore                          # Files to ignore in git 
-ÀÄÄ README.md                           # Project documentation 
-\`\`\` 
- 
 ## Pipeline Flow 
 1. **Raw Data** - bucket (\`movie-reco-raw-nishu/Raw/\`) 
 2. **Catalog** - Crawler creates tables in Data Catalog 
@@ -95,12 +99,6 @@ jupyter notebook notebooks/movie_recommendation.ipynb
 2. Configure AWS CLI: \`aws configure\` 
 3. Create S3 buckets: raw and processed zones 
 4. Set up Glue Crawler and ETL jobs 
- 
-## Business Impact 
-- **Personalization**: Deliver tailored movie recommendations 
-- **Scalability**: Handle millions of ratings with AWS serverless 
-- **Cost Efficiency**: Pay-per-use with Glue and S3 
-- **Maintainability**: Modular pipeline with clear separation 
  
 ## Skills Demonstrated 
 - [x] **Data Engineering**: S3, Glue, Spark ETL 
