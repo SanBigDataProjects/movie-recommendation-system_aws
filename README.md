@@ -4,117 +4,107 @@
 **A complete, cloud-native movie recommendation system implementing real-world data engineering and machine learning practices on AWS.** 
  
 ## Project Structure 
- 
 \`\`\` 
 movie-recommendation-system_aws/ 
-³ 
 ÃÄÄ notebooks/ 
-³   ÀÄÄ movie_recommendation.ipynb      # Main analysis notebook 
-³ 
+³   ÀÄÄ movie_recommendation.ipynb 
 ÃÄÄ data/ 
-³   ÃÄÄ raw/                            # Raw movie data 
-³   ³   ÃÄÄ movies.csv                  # Movie metadata 
-³   ³   ÀÄÄ ratings.csv                 # User ratings 
-³   ÃÄÄ processed/                      # Processed datasets 
-³   ÀÄÄ models/                         # Trained ML models 
-³ 
-ÃÄÄ src/                                # Source code modules 
-ÃÄÄ config/                             # Configuration files 
-ÃÄÄ requirements.txt                    # Python dependencies 
-ÃÄÄ .gitignore                          # Files to ignore in git 
-ÀÄÄ README.md                           # Project documentation 
+³   ÃÄÄ raw/ 
+³   ³   ÃÄÄ movies.csv 
+³   ³   ÀÄÄ ratings.csv 
+³   ÃÄÄ processed/ 
+³   ÀÄÄ models/ 
+ÃÄÄ src/ 
+ÃÄÄ config/ 
+ÃÄÄ requirements.txt 
+ÃÄÄ .gitignore 
+ÀÄÄ README.md 
 \`\`\` 
  
 ## End-to-End Architecture 
 \`\`\` 
 1. MovieLens Dataset - S3 Raw Zone 
-2. AWS S3 - Glue Crawler (Schema Discovery) 
-3. Glue Crawler - Data Catalog (Metadata) 
-4. Data Catalog - Glue ETL Job (Spark Processing) 
-5. Glue ETL - S3 Processed Zone (Aggregated Data) 
-6. S3 Processed - Notebook (ML Analysis) 
+2. AWS S3 - Glue Crawler 
+3. Glue Crawler - Data Catalog 
+4. Data Catalog - Glue ETL Job 
+5. Glue ETL - S3 Processed Zone 
+6. S3 Processed - Notebook 
 7. Jupyter - Filtering Model (SVD) 
-8. Model - stored to AWS S3 
+8. Model - to AWS S3 
 \`\`\` 
  
 ## What You Built (Real Production Pipeline) 
  
 - Created \`movie-reco-raw-nishu\` S3 bucket 
 - Uploaded \`movies.csv\` and \`ratings.csv\` to Raw zone 
-- **Why this matters**: Mimics real company data lake architecture 
+- **Why this matters**: Real data lake architecture 
  
 ### 2. Metadata Management (AWS Glue Crawler) 
 - Automated schema discovery from S3 
 - Created \`movie_reco_raw_db\` in Glue Data Catalog 
-- Generated queryable tables: \`movies_csv\`, \`ratings_csv\` 
-- **Why this matters**: Turns raw files into discoverable datasets 
+- Generated tables: \`movies_csv\`, \`ratings_csv\` 
+- **Why this matters**: Turns files into queryable datasets 
  
-### 3. Data Processing Pipeline (AWS Glue ETL - Spark) 
-- Built Spark ETL job for data transformation 
+### 3. Data Processing (AWS Glue ETL - Spark) 
+- Built Spark ETL job for transformation 
 - Performed aggregations: average_rating, rating_count 
 - Output to \`movie-reco-processed-nishu/final/\` 
-- **Why this matters**: Production ETL pipeline at scale 
+- **Why this matters**: Production ETL pipeline 
  
-- Connected Jupyter to S3 using IAM credentials 
-- Feature engineering: cleaned data, created business metrics 
-- EDA: rating distributions, data validation 
-- **Why this matters**: Bridge between engineering and science 
+- Connected Jupyter to S3 using IAM 
+- Feature engineering and EDA 
+- **Why this matters**: Bridge engineering and science 
  
 ### 5. Machine Learning (Collaborative Filtering) 
-- Implemented SVD (Singular Value Decomposition) 
-- Generated predicted ratings for user-movie pairs 
-- Produced Top-N personalized recommendations 
-- **Why this matters**: Real recommendation algorithm, not basic sorting 
+- Implemented SVD algorithm 
+- Generated predicted ratings 
+- Produced personalized recommendations 
+- **Why this matters**: Real ML, not basic sorting 
  
-### 6. Production Output (Model Deployment) 
+### 6. Production Output 
 - Saved recommendations as \`movie_recommendations.csv\` 
-- Stored in \`movie-reco-processed-nishu/recommendations/\` 
-- **Why this matters**: Model outputs ready for downstream applications 
+- Stored in S3 processed zone 
+- **Why this matters**: Ready for production use 
  
 ## Tech Stack 
  
 ## Pipeline Flow 
-1. **Raw Data** - bucket (\`movie-reco-raw-nishu/Raw/\`) 
-2. **Catalog** - Crawler creates tables in Data Catalog 
-3. **ETL** - Spark job processes and aggregates data 
-4. **Storage** - saved to S3 processed zone 
-5. **Analysis** - notebook reads from S3, performs ML 
-6. **Output** - saved back to S3 
+1. Raw Data - bucket 
+2. Glue Crawler - Catalog 
+3. Glue ETL - processing 
+4. S3 Processed -
+5. Jupyter - analysis 
+6. Model - to S3 
  
 ## Getting Started 
 \`\`\`bash 
-# Clone repository 
 git clone https://github.com/SanBigDataProjects/movie-recommendation-system_aws.git 
 cd movie-recommendation-system_aws 
- 
-# Install dependencies 
 pip install -r requirements.txt 
- 
-# Run the complete pipeline notebook 
 jupyter notebook notebooks/movie_recommendation.ipynb 
 \`\`\` 
  
 ## AWS Configuration 
 1. Create IAM user with S3, Glue permissions 
-2. Configure AWS CLI: \`aws configure\` 
-3. Create S3 buckets: raw and processed zones 
+2. Configure AWS CLI 
+3. Create S3 buckets 
 4. Set up Glue Crawler and ETL jobs 
  
 ## Skills Demonstrated 
-- [x] **Data Engineering**: S3, Glue, Spark ETL 
-- [x] **Cloud Architecture**: AWS serverless design 
-- [x] **Data Science**: Feature engineering, SVD, evaluation 
-- [x] **MLOps**: End-to-end pipeline from raw data to predictions 
-- [x] **Production Thinking**: IAM security, scalable design 
+- Data Engineering: S3, Glue, Spark ETL 
+- Cloud Architecture: AWS serverless design 
+- Data Science: Feature engineering, SVD 
+- MLOps: End-to-end pipeline 
+- Production Thinking: IAM, scalability 
  
 ## Results 
-- **Data Scale**: Processed 25M+ ratings 
-- **Pipeline Efficiency**: Serverless, auto-scaling 
-- **Model Performance**: Collaborative filtering with SVD 
-- **Output**: Personalized recommendations for users 
+- Processed 25M+ ratings 
+- Serverless, auto-scaling pipeline 
+- Collaborative filtering with SVD 
+- Personalized recommendations 
  
 ## Real-World Applicability 
-This pipeline mirrors what companies like Netflix, Amazon, and Spotify use for recommendations, but implemented on AWS with modern serverless architecture. 
+This mirrors what companies like Netflix and Amazon use for recommendations, implemented on AWS. 
  
 ## License 
-MIT License - See LICENSE file 
+MIT License 
