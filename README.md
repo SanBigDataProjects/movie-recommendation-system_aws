@@ -5,11 +5,14 @@
  
 ## End-to-End Architecture 
 \`\`\` 
-MovieLens Dataset - S3 Raw Zone - Glue Crawler 
-AWS Glue Crawler - Data Catalog - Glue ETL Job 
-AWS Glue ETL Job - Processing - S3 Processed Zone 
-AWS S3 Processed Zone - Notebook - Filtering Model 
-Collaborative Filtering Model - stored to AWS S3 
+1. MovieLens Dataset - S3 Raw Zone 
+2. AWS S3 - Glue Crawler (Schema Discovery) 
+3. Glue Crawler - Data Catalog (Metadata) 
+4. Data Catalog - Glue ETL Job (Spark Processing) 
+5. Glue ETL - S3 Processed Zone (Aggregated Data) 
+6. S3 Processed - Notebook (ML Analysis) 
+7. Jupyter - Filtering Model (SVD) 
+8. Model - stored to AWS S3 
 \`\`\` 
  
 ## What You Built (Real Production Pipeline) 
@@ -18,13 +21,13 @@ Collaborative Filtering Model - stored to AWS S3
 - Uploaded \`movies.csv\` and \`ratings.csv\` to Raw zone 
 - **Why this matters**: Mimics real company data lake architecture 
  
-### 2. Metadata Management (AWS Glue Crawler) 
+### 2. **Metadata Management (AWS Glue Crawler)** 
 - Automated schema discovery from S3 
 - Created \`movie_reco_raw_db\` in Glue Data Catalog 
 - Generated queryable tables: \`movies_csv\`, \`ratings_csv\` 
 - **Why this matters**: Turns raw files into discoverable datasets 
  
-### 3. Data Processing Pipeline (AWS Glue ETL - Spark) 
+### 3. **Data Processing Pipeline (AWS Glue ETL - Spark)** 
 - Built Spark ETL job for data transformation 
 - Performed aggregations: average_rating, rating_count 
 - Output to \`movie-reco-processed-nishu/final/\` 
@@ -35,13 +38,13 @@ Collaborative Filtering Model - stored to AWS S3
 - EDA: rating distributions, data validation 
 - **Why this matters**: Bridge between engineering and science 
  
-### 5. Machine Learning (Collaborative Filtering) 
+### 5. **Machine Learning (Collaborative Filtering)** 
 - Implemented SVD (Singular Value Decomposition) 
 - Generated predicted ratings for user-movie pairs 
 - Produced Top-N personalized recommendations 
 - **Why this matters**: Real recommendation algorithm, not basic sorting 
  
-### 6. Production Output (Model Deployment) 
+### 6. **Production Output (Model Deployment)** 
 - Saved recommendations as \`movie_recommendations.csv\` 
 - Stored in \`movie-reco-processed-nishu/recommendations/\` 
 - **Why this matters**: Model outputs ready for downstream applications 
@@ -52,23 +55,27 @@ Collaborative Filtering Model - stored to AWS S3
 \`\`\` 
 movie-recommendation-system_aws/ 
 ÃÄÄ notebooks/ 
-³   ÀÄÄ movie_recommendation.ipynb  # Complete pipeline implementation 
+³   ÀÄÄ movie_recommendation.ipynb      # Main analysis notebook 
 ÃÄÄ data/ 
-³   ÃÄÄ raw/                        # Local sample data (MovieLens) 
-³   ³   ÃÄÄ movies.csv              # 62,000 movies 
-³   ³   ÀÄÄ ratings.csv             # 25M ratings sample 
-³   ÀÄÄ processed/                  # Processed outputs 
-ÃÄÄ requirements.txt                # Python dependencies 
-ÀÄÄ README.md                       # This documentation 
+³   ÃÄÄ raw/                            # Raw movie data 
+³   ³   ÃÄÄ movies.csv                  # Movie metadata 
+³   ³   ÀÄÄ ratings.csv                 # User ratings 
+³   ÃÄÄ processed/                      # Processed datasets 
+³   ÀÄÄ models/                         # Trained ML models 
+ÃÄÄ src/                                # Source code modules 
+ÃÄÄ config/                             # Configuration files 
+ÃÄÄ requirements.txt                    # Python dependencies 
+ÃÄÄ .gitignore                          # Files to ignore in git 
+ÀÄÄ README.md                           # Project documentation 
 \`\`\` 
  
 ## Pipeline Flow 
-1. **Raw Data** - bucket (\`movie-reco-raw-nishu/Raw/\`) 
-2. **Catalog** - Crawler creates tables in Data Catalog 
-3. **ETL** - Spark job processes and aggregates data 
-4. **Storage** - saved to S3 processed zone 
-5. **Analysis** - notebook reads from S3, performs ML 
-6. **Output** - saved back to S3 
+1. **Raw Data**  S3 bucket (\`movie-reco-raw-nishu/Raw/\`) 
+2. **Catalog**  Glue Crawler creates tables in Data Catalog 
+3. **ETL**  Glue Spark job processes and aggregates data 
+4. **Storage**  Results saved to S3 processed zone 
+5. **Analysis**  Jupyter notebook reads from S3, performs ML 
+6. **Output**  Recommendations saved back to S3 
  
 ## Getting Started 
 \`\`\`bash 
