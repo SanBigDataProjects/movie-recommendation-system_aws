@@ -1,7 +1,15 @@
 # Movie Recommendation System with AWS
 
 ## Project Overview
-End-to-end movie recommendation system using AWS S3, Glue, and Spark with collaborative filtering algorithms.
+This project implements a **production-grade movie recommendation system** on AWS, demonstrating full-stack data engineering and machine learning skills. The pipeline processes **25M+ movie ratings** to deliver personalized recommendations using:
+
+1. **AWS S3** as a data lake (raw/processed zones)
+2. **AWS Glue** for serverless ETL and metadata management
+3. **Apache Spark** for distributed data processing
+4. **Collaborative Filtering** (SVD) for recommendation algorithms
+5. **End-to-end automation** from data ingestion to model deployment
+
+**Business Impact**: This architecture mirrors what companies like Netflix and Amazon use for personalized recommendations, scaled down to demonstrate core concepts while maintaining production-ready practices.
 
 ## Project Structure
 - **data/**
