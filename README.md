@@ -21,13 +21,13 @@
 - Uploaded \`movies.csv\` and \`ratings.csv\` to Raw zone 
 - **Why this matters**: Mimics real company data lake architecture 
  
-### 2. **Metadata Management (AWS Glue Crawler)** 
+### 2. Metadata Management (AWS Glue Crawler) 
 - Automated schema discovery from S3 
 - Created \`movie_reco_raw_db\` in Glue Data Catalog 
 - Generated queryable tables: \`movies_csv\`, \`ratings_csv\` 
 - **Why this matters**: Turns raw files into discoverable datasets 
  
-### 3. **Data Processing Pipeline (AWS Glue ETL - Spark)** 
+### 3. Data Processing Pipeline (AWS Glue ETL - Spark) 
 - Built Spark ETL job for data transformation 
 - Performed aggregations: average_rating, rating_count 
 - Output to \`movie-reco-processed-nishu/final/\` 
@@ -38,13 +38,13 @@
 - EDA: rating distributions, data validation 
 - **Why this matters**: Bridge between engineering and science 
  
-### 5. **Machine Learning (Collaborative Filtering)** 
+### 5. Machine Learning (Collaborative Filtering) 
 - Implemented SVD (Singular Value Decomposition) 
 - Generated predicted ratings for user-movie pairs 
 - Produced Top-N personalized recommendations 
 - **Why this matters**: Real recommendation algorithm, not basic sorting 
  
-### 6. **Production Output (Model Deployment)** 
+### 6. Production Output (Model Deployment) 
 - Saved recommendations as \`movie_recommendations.csv\` 
 - Stored in \`movie-reco-processed-nishu/recommendations/\` 
 - **Why this matters**: Model outputs ready for downstream applications 
@@ -70,12 +70,12 @@ movie-recommendation-system_aws/
 \`\`\` 
  
 ## Pipeline Flow 
-1. **Raw Data**  S3 bucket (\`movie-reco-raw-nishu/Raw/\`) 
-2. **Catalog**  Glue Crawler creates tables in Data Catalog 
-3. **ETL**  Glue Spark job processes and aggregates data 
-4. **Storage**  Results saved to S3 processed zone 
-5. **Analysis**  Jupyter notebook reads from S3, performs ML 
-6. **Output**  Recommendations saved back to S3 
+1. **Raw Data** - bucket (\`movie-reco-raw-nishu/Raw/\`) 
+2. **Catalog** - Crawler creates tables in Data Catalog 
+3. **ETL** - Spark job processes and aggregates data 
+4. **Storage** - saved to S3 processed zone 
+5. **Analysis** - notebook reads from S3, performs ML 
+6. **Output** - saved back to S3 
  
 ## Getting Started 
 \`\`\`bash 
