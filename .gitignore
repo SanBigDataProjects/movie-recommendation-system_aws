@@ -1,0 +1,31 @@
+# Python 
+__pycache__/ 
+*.py[cod] 
+*$py.class 
+.Python 
+ 
+# Jupyter 
+.ipynb_checkpoints/ 
+*.ipynb_checkpoints 
+ 
+# Environment 
+.env 
+.venv 
+env/ 
+venv/ 
+ 
+# AWS 
+.aws/ 
+*.credentials 
+*.config 
+ 
+# Data files 
+data/raw/*.csv 
+!data/raw/movies.csv 
+!data/raw/ratings.csv 
+*.parquet 
+*.pkl 
+ 
+# OS 
+.DS_Store 
+Thumbs.db 
